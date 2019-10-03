@@ -5,6 +5,12 @@ OpenALPR is an open source *Automatic License Plate Recognition* library written
 
 Check out a live online demo here: http://www.openalpr.com/demo-image.html
 
+Changes in this fork
+--------------------
+
+ * Fixed multithreading support. Commit 0f07bba7dd6f491542047f4a9740bf534ca5942a caused undefined behaviour due to concurrent setlocal/atof/sprintf calls resulting in heap corruption every few hundred thousands plate recognitions.
+ * Fixed compilation errors in Windows builds.
+
 User Guide
 -----------
 
