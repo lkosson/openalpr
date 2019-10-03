@@ -19,7 +19,6 @@
 
 #include "config_helper.h"
 
-#include <clocale>
 #include <iostream>
 
 using namespace std;
@@ -38,13 +37,7 @@ namespace alpr
       return defaultValue;
     }
 
-    char * locale = std::setlocale(LC_ALL, NULL);
-    setlocale(LC_NUMERIC, "C");
-
     float val = atof(pszValue);
-
-    std::setlocale(LC_NUMERIC, locale);
-
     return val;
   }
   
@@ -58,18 +51,13 @@ namespace alpr
     values.sort(CSimpleIniA::Entry::LoadOrder());
 
     std::vector<float> response;
-
-    char * locale = std::setlocale(LC_ALL, NULL);
-    std::setlocale(LC_NUMERIC, "C");
-
-      // output all of the items
+    
+  // output all of the items
     CSimpleIniA::TNamesDepend::const_iterator i;
-    for (i = values.begin(); i != values.end(); ++i) {
+    for (i = values.begin(); i != values.end(); ++i) { 
       response.push_back(atof(i->pItem));
     }
-
-    std::setlocale(LC_NUMERIC, locale);
-
+    
     return response;
   }
   

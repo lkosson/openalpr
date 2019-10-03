@@ -30,7 +30,6 @@
 #include <float.h>
 #include <limits.h>
 #include <ctype.h>
-#include <locale.h>
 #include "cjson.h"
 
 static const char *ep;
@@ -118,9 +117,6 @@ static const char *parse_number(cJSON *item,const char *num)
 /* Render the number nicely from the given item into a string. */
 static char *print_number(cJSON *item)
 {
-    char * locale = setlocale(LC_ALL, NULL);
-    setlocale(LC_NUMERIC, "C");
-
 	char *str;
 	double d=item->valuedouble;
 	if (fabs(((double)item->valueint)-d)<=DBL_EPSILON && d<=INT_MAX && d>=INT_MIN)
@@ -138,8 +134,6 @@ static char *print_number(cJSON *item)
 			else												sprintf(str,"%f",d);
 		}
 	}
-
-	setlocale(LC_NUMERIC, locale);
 	return str;
 }
 
